@@ -1,4 +1,4 @@
-const claveNASA = "GsqCas0fRjMfDdL7koVMiBSlcgBrXCChyg7J49vi";
+const claveNASA = "wXxgiwA31Ktt9yVEPSSEiZUG3imX2XweVmfWLjAc";
 let fotoActual = null;
 let listaDeFavoritos = [];
 
