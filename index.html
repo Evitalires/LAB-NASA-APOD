@@ -9,37 +9,50 @@
 </head>
 <body>
     <header>
-        <section id="selectorFechas">
-            <!-- Calendario que devuelva una fecha -->
-        </section>
+         <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">NASA APOD</a>
+               <div class="mb-4">
+                <label for="selectorFecha" class="form-label fw-bold text-white">Buscar por fecha:</label>
+                <input type="date" id="selectorFecha"  class="form-control" max="">
+            </div>
+            </div>
+        </nav>
+    <!-- END NAVBAR -->
+        
     </header>
-    <main>
+    <main class="container">        
+        <h2>Foto dia</h2>
         <section id="fotoDia">
            <!-- CARD FOTO DEL DÍA -->
-<div class="container my-4">
-    <div class="card shadow-lg">
+            <div class="my-4">
+                <div class="card shadow-lg">
 
-        <!-- Imagen -->
-        <img id="apodImagen" class="card-img-top" alt="Imagen del dia NASA">
+                    <!-- Imagen -->
+                    <img id="apodImagen" class="card-img-top" alt="Imagen del dia NASA">
 
-        <!-- Contenido -->
-        <div class="card-body">
-            <h3 id="apodTitulo" class="card-title">Cargando...</h3>
-            <p id="apodFecha" class="text-muted"></p>
-            <p id="apodDescripcion"></p>
-        </div>
+                    <!-- Contenido -->
+                    <div class="card-body">
+                        <h3 id="apodTitulo" class="card-title">Cargando...</h3>
+                        <p id="apodFecha" class="text-muted"></p>
+                        <p id="apodDescripcion"></p>
+                    </div>
 
-        <!-- Botón para favoritos -->
-        <div class="card-footer text-end">
-            <button id="btnFavorito" class="btn btn-outline-danger">
-                ❤️ Agregar a favoritos
-            </button>
-        </div>
-    </div>
-</div>
-
+                    <!-- Botón para favoritos -->
+                    <div class="card-footer text-end">
+                        <button id="btnFavorito" class="btn btn-outline-danger">
+                            ❤️ Agregar a favoritos
+                        </button>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section id="favoritos">
+        <section>
+            <H2>Mis favoritos</H2>
+            <div id="favoritos">
+                <p class="card">Mostrar acumulado favoritos</p>
+            </div>
             <!-- Mostrar array con la estructura de foto del dia, pero iterada. -->
         </section>
     </main>
