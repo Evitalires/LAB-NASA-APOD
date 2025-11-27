@@ -66,6 +66,19 @@ function cargarFavoritos() {
     mostrarFavoritos();
 }
 
+function borrar(fechaParaEliminar) {
+    console.log(fechaParaEliminar);
+    console.log(typeof fechaParaEliminar);
+    
+    listaDeFavoritos = listaDeFavoritos.filter((foto) => {
+        return foto.date !== fechaParaEliminar;
+    })
+
+    const nuevosFavoritos = JSON.stringify(listaDeFavoritos);
+    localStorage.setItem('fotos', nuevosFavoritos);
+
+    mostrarFavoritos();
+}
 
 function mostrarFavoritos() {
     const contenedor = document.getElementById('favoritos');
@@ -92,24 +105,24 @@ function mostrarFavoritos() {
         favoritos += '<div class="card-body">';
         favoritos += '<h5>' + foto.title + '</h5>';
         favoritos += '<p>' + foto.date + '</p>';
-        favoritos += '<button class="btn btn-sm btn-danger" onclick="borrar(' + i + ')">Borrar</button>';
+        favoritos += '<button class="btn btn-sm btn-danger borrar-btn" data-fecha="' + foto.date + '">Borrar</button>';
         favoritos += '</div>';
         favoritos += '</div>';
         favoritos += '</div>';
     }
 
     contenedor.innerHTML = favoritos;
+
+    contenedor.querySelectorAll('.borrar-btn').forEach(btn => {
+        btn.onclick = function() {
+            console.log("borrando");
+            
+            const fecha = this.getAttribute('data-fecha');
+            borrar(fecha);
+        };
+    });
 }
 
-
-function borrar(numero) {
-    listaDeFavoritos.splice(numero, 1);
-
-    const nuevosFavoritos = JSON.stringify(listaDeFavoritos);
-    localStorage.setItem('fotos', nuevosFavoritos);
-
-    mostrarFavoritos();
-}
 
 
 function cambioFecha() {
