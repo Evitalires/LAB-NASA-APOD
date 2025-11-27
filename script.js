@@ -1,4 +1,5 @@
 const claveNASA = "wXxgiwA31Ktt9yVEPSSEiZUG3imX2XweVmfWLjAc";
+/* const claveNASA = "GsqCas0fRjMfDdL7koVMiBSlcgBrXCChyg7J49vi"; */
 let fotoActual = null;
 let listaDeFavoritos = [];
 
