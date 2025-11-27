@@ -1,1 +1,0 @@
-/* Reciba un tipo de dato, y lo guarde en local storage */
