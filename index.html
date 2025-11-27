@@ -15,7 +15,29 @@
     </header>
     <main>
         <section id="fotoDia">
-            <!-- Card con body y footer -->
+           <!-- CARD FOTO DEL DÍA -->
+<div class="container my-4">
+    <div class="card shadow-lg">
+
+        <!-- Imagen -->
+        <img id="apodImagen" class="card-img-top" alt="Imagen del dia NASA">
+
+        <!-- Contenido -->
+        <div class="card-body">
+            <h3 id="apodTitulo" class="card-title">Cargando...</h3>
+            <p id="apodFecha" class="text-muted"></p>
+            <p id="apodDescripcion"></p>
+        </div>
+
+        <!-- Botón para favoritos -->
+        <div class="card-footer text-end">
+            <button id="btnFavorito" class="btn btn-outline-danger">
+                ❤️ Agregar a favoritos
+            </button>
+        </div>
+    </div>
+</div>
+
         </section>
         <section id="favoritos">
             <!-- Mostrar array con la estructura de foto del dia, pero iterada. -->
