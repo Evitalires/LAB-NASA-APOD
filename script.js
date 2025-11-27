@@ -3,11 +3,11 @@ let fotoActual = null;
 let listaDeFavoritos = [];
 
 
-function traerFoto(cualFecha) {
+function traerFoto(fecha) {
     let direccion = "https://api.nasa.gov/planetary/apod?api_key=" + claveNASA;
 
-    if (cualFecha) {
-        direccion = direccion + "&date=" + cualFecha;
+    if (fecha) {
+        direccion = direccion + "&date=" + fecha;
     }
 
     fetch(direccion)
@@ -45,7 +45,7 @@ function guardarFavorito() {
         return;
     }
 
-    listaDeFavoritos.push(fotoActual);
+    listaDeFavoritos.unshift(fotoActual);
 
     const textoParaGuardar = JSON.stringify(listaDeFavoritos);
     localStorage.setItem('fotos', textoParaGuardar);
@@ -68,40 +68,44 @@ function cargarFavoritos() {
 
 function mostrarFavoritos() {
     const contenedor = document.getElementById('favoritos');
-    const cuantos = listaDeFavoritos.length;
+    const totalFavoritos = listaDeFavoritos.length;
 
-    document.getElementById('total').innerText = cuantos;
-
-    if (cuantos === 0) {
-        contenedor.innerHTML = '<div class="col-12"><div class="alert alert-info">No tienes favoritos</div></div>';
+    document.getElementById('total').innerText = totalFavoritos;
+    
+    if (totalFavoritos === 0) {
+        contenedor.innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-info">No tienes favoritos</div>
+            </div>';
+        `
         return;
     }
-
-    let html = '';
-    for (let i = 0; i < cuantos; i++) {
+    //Cambiar a una funcion for each.
+    let favoritos = '';
+    for (let i = 0; i < totalFavoritos; i++) {
         const foto = listaDeFavoritos[i];
 
-        html += '<div class="col-md-4 mb-3">';
-        html += '<div class="card">';
-        html += '<img src="' + foto.url + '" style="height: 200px; object-fit: cover;">';
-        html += '<div class="card-body">';
-        html += '<h5>' + foto.title + '</h5>';
-        html += '<p>' + foto.date + '</p>';
-        html += '<button class="btn btn-sm btn-danger" onclick="borrar(' + i + ')">Borrar</button>';
-        html += '</div>';
-        html += '</div>';
-        html += '</div>';
+        favoritos += '<div class="col-md-4 mb-3">';
+        favoritos += '<div class="card">';
+        favoritos += '<img src="' + foto.url + '" style="height: 200px; object-fit: cover;">';
+        favoritos += '<div class="card-body">';
+        favoritos += '<h5>' + foto.title + '</h5>';
+        favoritos += '<p>' + foto.date + '</p>';
+        favoritos += '<button class="btn btn-sm btn-danger" onclick="borrar(' + i + ')">Borrar</button>';
+        favoritos += '</div>';
+        favoritos += '</div>';
+        favoritos += '</div>';
     }
 
-    contenedor.innerHTML = html;
+    contenedor.innerHTML = favoritos;
 }
 
 
 function borrar(numero) {
     listaDeFavoritos.splice(numero, 1);
 
-    const textoParaGuardar = JSON.stringify(listaDeFavoritos);
-    localStorage.setItem('fotos', textoParaGuardar);
+    const nuevosFavoritos = JSON.stringify(listaDeFavoritos);
+    localStorage.setItem('fotos', nuevosFavoritos);
 
     mostrarFavoritos();
 }
